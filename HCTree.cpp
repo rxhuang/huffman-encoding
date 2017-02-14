@@ -29,7 +29,6 @@ void HCTree::build(const vector<int> & freqs){
     right->p = parent;
     parent->c0= left;
     parent->c1= right;
-    // push the new internal node back to queue
     queue.push(parent);
   }
   root = queue.top();
@@ -52,11 +51,8 @@ void HCTree::encode(byte symbol, ofstream& out) const{
 int HCTree::decode(ifstream& in) const{
   byte symbol;
   HCNode* curr = root;
-  //while the node is not leaf
   while(curr->c0 != NULL || curr->c1 != NULL){
     symbol =(byte) in.get();
-    //if the symbol is 0 go to left child
-    //else go to right child
     if(symbol== '0'){
       curr= curr->c0;
     }else if(symbol == '1'){
