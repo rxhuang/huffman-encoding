@@ -2,6 +2,8 @@
 #include <stack>
 using namespace std;
 
+HCTree::~HCTree(){
+}
 void HCTree::build(const vector<int> & freqs){
   priority_queue<HCNode*, vector<HCNode*>, HCNodePtrComp> queue;
 
@@ -63,9 +65,4 @@ int HCTree::decode(ifstream& in) const{
   return curr->symbol;
 }
 
-void HCTree::deleteAll(HCNode* node){
-  if(node == NULL) return;
-  deleteAll(node->c0);
-  deleteAll(node->c1);
-  delete(node);
-}
+

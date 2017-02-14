@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "HCTree.hpp"
+#include "HCTree.h"
 using namespace std;
 int main (int argc, char*argv[]){
 
@@ -15,7 +15,7 @@ int main (int argc, char*argv[]){
   vector<int> freq(256,0);
   int size = 0;
   // 1.Open the input file for reading.
-  infile.open(argc[1], ios::binary);
+  infile.open(argv[1], ios::binary);
 
   // 2.Read bytes from the file. Count the number of occurrences of each byte value. Close the file.
 
@@ -23,7 +23,7 @@ int main (int argc, char*argv[]){
     b = infile.get();
     if(infile.eof()) break;
     freq[b]++;
-    size++
+    size++;
   }
 
   //  3. Use the byte counts to construct a Huffman coding tree. Each unique byte with a non-zero count will be a leaf node in the Huffman tree.
@@ -41,16 +41,16 @@ int main (int argc, char*argv[]){
   }
 
   // 6.Open the input file for reading, again.
-  input.clear();
-  input.seekg(0, ios::beg);
+  infile.clear();
+  infile.seekg(0, ios::beg);
 
   //7. Using the Huffman coding tree, translate each byte from the input file into its code, and append these codes as a sequence of bits to the output file, after the header.
   for (int j = 0; j < size; j++){
-    b = input.get();
+    b = infile.get();
     tree.encode(b,outfile);
   }
 
-    bout.flush();
+  
   // 8. Close the input and output files.
   outfile.close();
   infile.close();

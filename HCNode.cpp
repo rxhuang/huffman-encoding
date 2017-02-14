@@ -8,7 +8,7 @@
 */
 bool HCNode::operator<(HCNode const &other) const{
   // if counts are different, just compare counts
-  if(count != other.count) return count > other.count;
+  if(this->count != other.count) return this->count > other.count;
   //counts are equal. use symbol value to break tie
-  return symbol < other.symbol;
+  return this->symbol < other.symbol;
 }

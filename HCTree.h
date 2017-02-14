@@ -79,7 +79,7 @@ public:
      */
     int decode(ifstream& in) const;
 
-    void deleteAll(HCNode*);
+    //void deleteAll(HCNode* node);
 
 };
 
