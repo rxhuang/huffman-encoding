@@ -1,4 +1,4 @@
-#include HCNODE_H
+#include "HCNode.h"
 #include <iostream>
 /*
   Compare this HCNode and other for priority ordering.
