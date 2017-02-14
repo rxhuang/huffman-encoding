@@ -78,8 +78,8 @@ public:
      *  IN THE FINAL SUBMISSION.
      */
     int decode(ifstream& in) const;
-
-    //void deleteAll(HCNode* node);
+    // destructor 
+    void deleteAll(HCNode* node);
 
 };
 

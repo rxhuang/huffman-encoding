@@ -6,7 +6,7 @@
   Smaller count means higher priority.
   Use node symbol for deterministic tiebkreaking
 */
-bool HCNode::operator<(HCNode const &other) const{
+bool HCNode::operator<(HCNode const &other){
   // if counts are different, just compare counts
   if(this->count != other.count) return this->count > other.count;
   //counts are equal. use symbol value to break tie
