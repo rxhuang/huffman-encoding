@@ -37,7 +37,7 @@ int main (int argc, char*argv[]){
   // 5. Write enough information (a "file header") to the output file to enable the coding tree to be reconstructed when the file is read by your uncompress program. You should write the header as plain (ASCII) text for the checkpoint. See "the file header demystified" and "designing your header" for more details.
 
   for(int i =0; i < freq.size(); i++){
-    outfile.write((char*)&freq[i], sizeof(int));
+    //outfile.write((char*)&freq[i], sizeof(int));
   }
 
   // 6.Open the input file for reading, again.

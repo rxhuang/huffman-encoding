@@ -10,5 +10,5 @@ bool HCNode::operator<(HCNode const &other){
   // if counts are different, just compare counts
   if(this->count != other.count) return this->count > other.count;
   //counts are equal. use symbol value to break tie
-  return this->symbol < other.symbol;
+  return this->symbol > other.symbol;
 }
