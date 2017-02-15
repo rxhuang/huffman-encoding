@@ -28,9 +28,9 @@ int main(int argc, char*argv[]){
 
   //2. Read the file header at the beginning of the input file,
   //and reconstruct the Huffman coding tree.
-  //int count;
   for (int i = 0; i < freq.size(); i++){
     input.read((char*)&freq[i], sizeof(int));
+    size += freq[i];
   }
 
   HCTree tree;
