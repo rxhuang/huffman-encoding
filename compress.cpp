@@ -1,3 +1,9 @@
+/* Name: Ruoxin Huang and Muyang Wu
+   Date: Feb 15
+   Overview: compresses a file store in another file
+   Assignment number: 3
+*/
+
 #include <iostream>
 #include <fstream>
 #include "HCTree.h"

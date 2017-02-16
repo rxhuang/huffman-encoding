@@ -1,3 +1,9 @@
+/* Name: Ruoxin Huang and Muyang Wu
+   Date: Feb 15
+   Overview: Header file for HCNode.cpp
+   Assignment number: 3
+*/
+
 #ifndef HCNODE_H
 #define HCNODE_H
 

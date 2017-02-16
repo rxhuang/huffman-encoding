@@ -1,3 +1,9 @@
+/* Name: Ruoxin Huang and Muyang Wu
+   Date: Feb 15
+   Overview: unpresses a file and stores in another file
+   Assignment number: 3
+*/
+
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>

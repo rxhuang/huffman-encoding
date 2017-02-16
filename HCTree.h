@@ -1,10 +1,15 @@
 #ifndef HCTREE_H
 #define HCTREE_H
-
 #include <queue>
 #include <vector>
 #include <fstream>
 #include "HCNode.h"
+/* Name: Ruoxin Huang and Muyang Wu
+   Date: Feb 15
+   Overview: Header file for HCTree.cpp
+   Assignment number: 3
+*/
+
 //#include "BitInputStream.h"
 //#include "BitOutputStream.h"
 

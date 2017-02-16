@@ -1,3 +1,9 @@
+/* Name: Ruoxin Huang and Muyang Wu
+   Date: Feb 15
+   Overview: implements a Huffman Compression Tree
+   Assignment number: 3
+*/
+
 #include "HCTree.h"
 #include <stack>
 using namespace std;

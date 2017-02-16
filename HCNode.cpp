@@ -1,5 +1,11 @@
 #include "HCNode.h"
 #include <iostream>
+/* Name: Ruoxin Huang and Muyang Wu
+   Date: Feb 15
+   Overview: node class for HCTree, overloads < operator
+   Assignment number: 3
+*/
+
 /*
   Compare this HCNode and other for priority ordering.
 
