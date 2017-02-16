@@ -38,6 +38,7 @@ int main (int argc, char*argv[]){
 
   for(int i =0; i < freq.size(); i++){
     //outfile.write((char*)&freq[i], sizeof(int));
+    outfile<<freq[i] << endl;
   }
 
   // 6.Open the input file for reading, again.
@@ -50,7 +51,7 @@ int main (int argc, char*argv[]){
     tree.encode(b,outfile);
   }
 
-  
+
   // 8. Close the input and output files.
   outfile.close();
   infile.close();

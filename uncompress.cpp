@@ -14,7 +14,7 @@ int main(int argc, char*argv[]){
   ofstream output;
   ifstream input;
   int size = 0;
-  byte b = 0;
+  int b;
   string str;
 
   vector<int> freq(256, 0);
@@ -29,7 +29,8 @@ int main(int argc, char*argv[]){
   //2. Read the file header at the beginning of the input file,
   //and reconstruct the Huffman coding tree.
   for (int i = 0; i < freq.size(); i++){
-    input.read((char*)&freq[i], sizeof(int));
+    getline(input,str);
+    freq[i] = stoi(str);
     size += freq[i];
   }
 
@@ -43,7 +44,7 @@ int main(int argc, char*argv[]){
   //into the appropriate sequence of bytes, writing them to the output file
   for (int x = 0; x < size; x++){
     b = tree.decode(input);
-    output.write((char*)&b, 1);
+    output <<b;
   }
 
   //5. Close the input and output files.
