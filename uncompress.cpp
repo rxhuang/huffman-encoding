@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include "HCTree.h"
+#include "BitOutputStream.h"
 using namespace std;
 
 int main(int argc, char*argv[]){
@@ -31,7 +32,7 @@ int main(int argc, char*argv[]){
 
   infile.seekg(0, ios::beg);
   outfile.open(argv[2], ios::binary);
-
+  BitInputStream bin(infile);
   //2. Read the file header at the beginning of the input file,
   //and reconstruct the Huffman coding tree.
   for (int i = 0; i < freq.size(); i++){
@@ -46,8 +47,8 @@ int main(int argc, char*argv[]){
   //4. Using the Huffman coding tree, decode the bits from the input file
   //into the appropriate sequence of bytes, writing them to the output file
   for (int x = 0; x < size; x++){
-    b = tree.decode(infile);
-    outfile <<b;
+    b = tree.decode(bin);
+    outfile << b;
   }
   //5. Close the input and output files.
   outfile.close();

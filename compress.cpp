@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include "HCTree.h"
+#include "BitOutputStream.h"
 using namespace std;
 int main (int argc, char*argv[]){
 
@@ -39,12 +40,11 @@ int main (int argc, char*argv[]){
 
   // 4. Open the output file for writing.
   outfile.open(argv[2],ios::binary);
-
+  BitOutputStream bout(outfile);
   // 5. Write enough information (a "file header") to the output file to enable the coding tree to be reconstructed when the file is read by your uncompress program. You should write the header as plain (ASCII) text for the checkpoint. See "the file header demystified" and "designing your header" for more details.
-
   for(int i =0; i < freq.size(); i++){
     //outfile.write((char*)&freq[i], sizeof(int));
-    outfile<<freq[i] << endl;
+    bout.writeBit(freq[i]);
   }
 
   // 6.Open the input file for reading, again.
@@ -54,10 +54,10 @@ int main (int argc, char*argv[]){
   //7. Using the Huffman coding tree, translate each byte from the input file into its code, and append these codes as a sequence of bits to the output file, after the header.
   for (int j = 0; j < size; j++){
     b = infile.get();
-    tree.encode(b,outfile);
+    tree.encode(b,bout);
   }
 
-
+  bout.flush();
   // 8. Close the input and output files.
   outfile.close();
   infile.close();
