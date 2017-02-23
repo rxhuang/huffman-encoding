@@ -9,7 +9,7 @@
 #include "HCTree.h"
 using namespace std;
 int main (int argc, char*argv[]){
-
+  //check if number of arguements are correct
   if(argc != 3){
     cout << "Invalid number of arguments" << endl;
     return -1;
@@ -17,17 +17,26 @@ int main (int argc, char*argv[]){
 
   ifstream infile;
   ofstream outfile;
+  int size=0;
   byte b;
   vector<int> freq(256,0);
-  int size = 0;
+
   // 1.Open the input file for reading.
   infile.open(argv[1], ios::binary);
+  
+  //check for empty file
+  infile.seekg(0, ios::end);
+  if(infile.tellg()==0){
+    infile.close();
+    cout<<"cannot compress empty file"<<endl;
+    exit(-1);
+  }
 
   // 2.Read bytes from the file. Count the number of occurrences of each byte value. Close the file.
 
-  while(1){
+  infile.seekg(0, ios::beg);
+  while(!infile.eof()){
     b = infile.get();
-    if(infile.eof()) break;
     freq[b]++;
     size++;
   }
@@ -40,10 +49,12 @@ int main (int argc, char*argv[]){
   // 4. Open the output file for writing.
   outfile.open(argv[2],ios::binary);
   BitOutputStream bout(outfile);
+ 
   // 5. Write enough information (a "file header") to the output file to enable the coding tree to be reconstructed when the file is read by your uncompress program. You should write the header as plain (ASCII) text for the checkpoint. See "the file header demystified" and "designing your header" for more details.
   for(int i =0; i < freq.size(); i++){
-    //outfile.write((char*)&freq[i], sizeof(int));
-    bout.writeBit(freq[i]);
+    for(int j=1; j<=32; j++){
+      bout.writeBit(freq[i]>>(32-j));
+    }
   }
 
   // 6.Open the input file for reading, again.
@@ -55,11 +66,10 @@ int main (int argc, char*argv[]){
     b = infile.get();
     tree.encode(b,bout);
   }
-
   bout.flush();
+  
   // 8. Close the input and output files.
   outfile.close();
   infile.close();
-
 
 }

@@ -22,26 +22,36 @@ int main(int argc, char*argv[]){
   int size = 0;
   byte b;
   string str;
-
   vector<int> freq(256, 0);
 
   //1. Open the input file for reading.
   infile.open(argv[1], ios::binary);
+  infile.seekg(0, ios::end);
+  if(infile.tellg()==0){
+    infile.close();
+    cout<<"nothing to uncompress"<<endl;
+    exit(-1);
+  }
 
-
-  infile.seekg(0, ios::beg);
-  outfile.open(argv[2], ios::binary);
-  BitInputStream bin(infile);
   //2. Read the file header at the beginning of the input file,
   //and reconstruct the Huffman coding tree.
-  for (int i = 0; i < freq.size(); i++){
-    getline(infile,str);
-    freq[i] = stoi(str);
-    size += freq[i];
+  infile.seekg(0, ios::beg);
+  BitInputStream bin(infile);
+
+  for (int i = 0; i < freq.size(); i++){	
+    int temp = 0;
+    for(int j=1; j<=32; j++){
+      temp |= bin.readBit();
+      temp <<= 1;
+    }
+    freq[i] = temp;
+    size += temp;
   }
-  // build the tree
+ 
+  //3. build the tree and open the output file for writing
   HCTree tree;
   tree.build(freq);
+  outfile.open(argv[2], ios::binary);
 
   //4. Using the Huffman coding tree, decode the bits from the input file
   //into the appropriate sequence of bytes, writing them to the output file
