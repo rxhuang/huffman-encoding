@@ -8,7 +8,6 @@
 #include <iostream>
 #include <fstream>
 #include "HCTree.h"
-#include "BitOutputStream.h"
 using namespace std;
 
 int main(int argc, char*argv[]){
