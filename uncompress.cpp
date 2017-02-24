@@ -40,11 +40,11 @@ int main(int argc, char*argv[]){
 
   for (int i = 0; i < freq.size(); i++){	
     int temp = 0;
-    for(int j=1; j<=32; j++){
-      temp |= bin.readBit();
-      temp <<= 1;
+    for(int j=1; j<=24; j++){
+      temp |= bin.readBit()<<(24-j);
     }
     freq[i] = temp;
+    cout<<freq[i]<<endl;
     size += temp;
   }
  

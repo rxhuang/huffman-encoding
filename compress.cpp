@@ -52,8 +52,8 @@ int main (int argc, char*argv[]){
  
   // 5. Write enough information (a "file header") to the output file to enable the coding tree to be reconstructed when the file is read by your uncompress program. You should write the header as plain (ASCII) text for the checkpoint. See "the file header demystified" and "designing your header" for more details.
   for(int i =0; i < freq.size(); i++){
-    for(int j=1; j<=32; j++){
-      bout.writeBit(freq[i]>>(32-j));
+    for(int j=1; j<=24; j++){
+      bout.writeBit(freq[i]>>(24-j));
     }
   }
 

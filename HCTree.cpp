@@ -91,12 +91,12 @@ int HCTree::decode(BitInputStream& in) const{
   int symbol;// a bit of data
   HCNode* curr = root;//set curr to root
   //while the cur has any child
-  while(curr->c0 != NULL || curr->c1 != NULL){
+  while(curr->c0 || curr->c1){
     symbol =in.readBit();// read data from input stream
     //go down the tree according to the data
-    if(symbol== '0'){
+    if(symbol== 0){
       curr= curr->c0;
-    }else if(symbol == '1'){
+    }else if(symbol == 1){
       curr = curr->c1;
     }
   }
@@ -114,9 +114,9 @@ int HCTree::decode(ifstream& in) const{
   while(curr->c0 != NULL || curr->c1 != NULL){
     symbol =(byte) in.get();// read data from input stream
     //go down the tree according to the data
-    if(symbol== '0'){
+    if(symbol=='0'){
       curr= curr->c0;
-    }else if(symbol == '1'){
+    }else if(symbol =='1'){
       curr = curr->c1;
     }
   }
