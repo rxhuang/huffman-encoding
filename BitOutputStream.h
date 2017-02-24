@@ -1,4 +1,9 @@
 #include <iostream>
+/* Name: Ruoxin Huang and Muyang Wu
+   Date: Feb 23
+   Overview: An output stream that reads a single bit at a time
+   Assignment number: 3
+*/
 
 class BitOutputStream {
  private:
@@ -11,7 +16,9 @@ public:
    * the given ostream for output */
  BitOutputStream(std::ostream & os) : out(os), buf(0), nbits(0){};
 
+  //send the buffer to the output and clear it
   void flush();
 
+  //write the least significant bit to buffer and increment buffer index
   void writeBit(int i);
 };
