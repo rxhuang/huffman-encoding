@@ -35,10 +35,11 @@ int main (int argc, char*argv[]){
   // 2.Read bytes from the file. Count the number of occurrences of each byte value. Close the file.
 
   infile.seekg(0, ios::beg);
+  b = infile.get();
   while(!infile.eof()){
-    b = infile.get();
     freq[b]++;
     size++;
+    b = infile.get();
   }
 
   //  3. Use the byte counts to construct a Huffman coding tree. Each unique byte with a non-zero count will be a leaf node in the Huffman tree.
